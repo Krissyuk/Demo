@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+<title>Заявки</title>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <th>Номер заявки</th>
+            <th>Дата добавления</th>
+            <th>Дата окончания</th>
+            <th>Оборудование, которое требует ремонта</th>
+            <th>Тип неисправности</th>
+            <th>Описание проблемы</th>
+            <th>Клиент, который подал заявку</th>
+            <th>Статус заявки</th>
+            <th>Мастер</th>
+
+        </tr>
+
+    </table>
+    <script>
+        let table = document.querySelector("table");
+        GetOrders();
+
+        async function GetOrders()
+        {
+            let response = await fetch("https://localhost:7157",{method:"GET"});
+            let orders = await response.json();
+
+            orders.forEach(o => {
+                let tr = document.createElement("tr");
+
+                tr.append(CreateTd (o.number));
+                tr.append(CreateTd (o.startDate.substring(0,10))); 
+                tr.append(CreateTd (o.endDate.substring(0,10))); 
+                tr.append(CreateTd (o.device)); 
+                tr.append(CreateTd (o.problemType)); 
+                tr.append(CreateTd (o.description)); 
+                tr.append(CreateTd (o.client)); 
+                tr.append(CreateTd (o.status)); 
+                tr.append(CreateTd (o.master));
+
+                table.append(tr)
+            });
+        }
+
+    </script>
+</body>
+</html>
