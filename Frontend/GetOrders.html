@@ -26,25 +26,31 @@
 
         async function GetOrders()
         {
-            let response = await fetch("http://localhost:5069/orders",{method:"GET"});
+            let response = await fetch("https://localhost:7228/orders",{method:"GET"});
             let orders = await response.json();
 
             orders.forEach(o => {
                 let tr = document.createElement("tr");
 
-                tr.innerHTML =
-                tr.append(CreateTd (o.number));
-                tr.append(CreateTd (o.startDate.substring(0,10))); 
-                tr.append(CreateTd (o ? o.endDate.substring(0,10) : "Не назначено")); 
-                tr.append(CreateTd (o.device)); 
-                tr.append(CreateTd (o.problemtype)); 
-                tr.append(CreateTd (o.description)); 
-                tr.append(CreateTd (o.fullname)); 
-                tr.append(CreateTd (o.status)); 
-                tr.append(CreateTd (o.master));
+                tr.append(CreateTd(o.number));
+                tr.append(CreateTd(o.startDate.substring(0,10))); 
+                tr.append(CreateTd(o ? o.endDate.substring(0,10) : "Не назначено")); 
+                tr.append(CreateTd(o.device)); 
+                tr.append(CreateTd(o.problemtype)); 
+                tr.append(CreateTd(o.description)); 
+                tr.append(CreateTd(o.fullname)); 
+                tr.append(CreateTd(o.status)); 
+                tr.append(CreateTd(o.master));
 
                 table.append(tr)
             });
+        }
+
+        function CreateTd(data)
+        {
+            let td = document.createElement("td");
+            td.append(data);
+            return td;
         }
 
     </script>

@@ -48,7 +48,7 @@
                 status : document.getElementById("status").value
             }
 
-            fetch("http://localhost:5069/create", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(order)});
+            fetch("https://localhost:7228/create", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(order)});
         }
     </script>
 </body>
