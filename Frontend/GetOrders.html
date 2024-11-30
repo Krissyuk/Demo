@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
 <title>Заявки</title>
 </head>
 <body>
-
+    <a href = "GetOrders.html">Получить заявки</a>
+    <a href = "AddOrders.html">Добавить новую заявку</a>
     <table>
         <tr>
             <th>Номер заявки</th>
@@ -17,9 +18,7 @@
             <th>Клиент, который подал заявку</th>
             <th>Статус заявки</th>
             <th>Мастер</th>
-
         </tr>
-
     </table>
     <script>
         let table = document.querySelector("table");
@@ -27,19 +26,20 @@
 
         async function GetOrders()
         {
-            let response = await fetch("https://localhost:7157",{method:"GET"});
+            let response = await fetch("http://localhost:5069/orders",{method:"GET"});
             let orders = await response.json();
 
             orders.forEach(o => {
                 let tr = document.createElement("tr");
 
+                tr.innerHTML =
                 tr.append(CreateTd (o.number));
                 tr.append(CreateTd (o.startDate.substring(0,10))); 
-                tr.append(CreateTd (o.endDate.substring(0,10))); 
+                tr.append(CreateTd (o ? o.endDate.substring(0,10) : "Не назначено")); 
                 tr.append(CreateTd (o.device)); 
-                tr.append(CreateTd (o.problemType)); 
+                tr.append(CreateTd (o.problemtype)); 
                 tr.append(CreateTd (o.description)); 
-                tr.append(CreateTd (o.client)); 
+                tr.append(CreateTd (o.fullname)); 
                 tr.append(CreateTd (o.status)); 
                 tr.append(CreateTd (o.master));
 

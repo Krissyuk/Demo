@@ -69,13 +69,13 @@ app.MapGet("/statistics", () =>new{
 
 app.Run();
 
-class Order(int number, DateOnly startDate, string device, string problemtype, string Description, string fullname, string status)
+class Order(int number, DateOnly startDate, string device, string problemtype, string description, string fullname, string status)
 {
     public int Number { get; set; } = number;
     public DateOnly StartDate { get; set; } = startDate;
     public string Device { get; set; } = device;
     public string ProblemType { get; set; } = problemtype;
-    public string Description { get; set; } = Description;
+    public string Description { get; set; } = description;
     public string Fullname { get; set; } = fullname;
     public string Status { get; set; } = status;
     public string? Master { get; set; } = "Не назначен";
